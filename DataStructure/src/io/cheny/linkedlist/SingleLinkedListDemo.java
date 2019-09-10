@@ -39,13 +39,35 @@ public class SingleLinkedListDemo {
         singleLinkedList.list();
         // 删除一个节点
         singleLinkedList.delete(1);
-        singleLinkedList.delete(2);
         singleLinkedList.delete(4);
-        singleLinkedList.delete(3);
+        // singleLinkedList.delete(2);
+        // singleLinkedList.delete(3);
         System.out.println("删除后的链表情况~~");
 
         // 显示
         singleLinkedList.list();
+        // 测试 求单链表中有效节点的个数
+        System.out.println("有效的节点个数 = " + getLength(singleLinkedList.getHead()));
+    }
+
+    /**
+     * 获取单链表有效节点的个数(如果是带头节点的链表，需求不统计头结点)
+     *
+     * @param head 链表的头节点
+     * @return 有效节点的个数
+     */
+    public static int getLength(HeroNode head) {
+        HeroNode temp = head.next;
+        // 空链表
+        if (temp == null) {
+            return 0;
+        }
+        int length = 0;
+        while (temp != null) {
+            length++;
+            temp = temp.next;
+        }
+        return length;
     }
 
 }
@@ -58,6 +80,10 @@ class SingleLinkedList {
      * 初始化一个头结点，头结点不要动，不存放具体的数据
      */
     private HeroNode head = new HeroNode(0, "", "");
+
+    public HeroNode getHead() {
+        return head;
+    }
 
     /**
      * 添加节点到单向链表

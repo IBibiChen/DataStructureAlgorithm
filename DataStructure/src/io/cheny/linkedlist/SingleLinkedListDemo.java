@@ -1,5 +1,7 @@
 package io.cheny.linkedlist;
 
+import java.util.Stack;
+
 /**
  * 单链表 .
  *
@@ -54,6 +56,9 @@ public class SingleLinkedListDemo {
         System.out.println("反转单链表~~");
         reverseList(singleLinkedList.getHead());
         singleLinkedList.list();
+        // 测试逆序打印单链表
+        System.out.println("逆序打印单链表，没有改变链表的结构~~");
+        reversePrint(singleLinkedList.getHead());
     }
 
     /**
@@ -137,6 +142,29 @@ public class SingleLinkedListDemo {
             cur = next;
         }
         head.next = reverseHead.next;
+    }
+
+    /**
+     * 逆序打印单链表，利用栈这个数据结构(先进后出的特点)
+     *
+     * @param head
+     */
+    public static void reversePrint(HeroNode head) {
+        if (head.next == null) {
+            return;
+        }
+        // 创建一个栈
+        Stack<HeroNode> stack = new Stack<>();
+        HeroNode cur = head.next;
+        // 将各个节点压入栈
+        while (cur != null) {
+            stack.push(cur);
+            cur = cur.next;
+        }
+        // 将栈中的节点进行打印
+        while (stack.size() > 0) {
+            System.out.println(stack.pop());
+        }
     }
 
 }
